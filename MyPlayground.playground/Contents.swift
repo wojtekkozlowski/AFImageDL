@@ -16,7 +16,7 @@ class Card {
 //-----------------------------------------------------------
 class AllImagesDownloader {
     
-    static func dataForFile(_ file: String) -> Data {
+    private static func dataForFile(_ file: String) -> Data {
         return try! Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: file, ofType: "")!))
     }
     
@@ -31,7 +31,10 @@ class AllImagesDownloader {
     }()
     
     private lazy var downloader:AFImageDownloader = {
-        return AFImageDownloader(sessionManager: self.sessionManager, downloadPrioritization: .FIFO, maximumActiveDownloads: 5, imageCache: nil)
+        return AFImageDownloader(sessionManager: self.sessionManager,
+                                 downloadPrioritization: .FIFO,
+                                 maximumActiveDownloads: 5,
+                                 imageCache: nil)
     }()
     
     func fetchImages(_ items: [Card], completion: @escaping () -> Void) {
@@ -44,13 +47,12 @@ class AllImagesDownloader {
                     item.image = image
                     allImagesGroup.leave()
                 }, failure: { (_, _, error) in
-                     print(error)
+                    print(error)
+                    allImagesGroup.leave()
                 })
             }
         }
-        allImagesGroup.notify(queue: DispatchQueue.main) {
-            completion()
-        }
+        allImagesGroup.notify(queue: DispatchQueue.main) { completion() }
     }
 }
 
