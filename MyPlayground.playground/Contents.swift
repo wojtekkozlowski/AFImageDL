@@ -42,15 +42,13 @@ class AllImagesDownloader {
         
         items.forEach { item in
             allImagesGroup.enter()
-            DispatchQueue.global().async {
-                self.downloader.downloadImage(for: URLRequest(url: URL(string: item.url)!), success: { (_, _, image) in
-                    item.image = image
-                    allImagesGroup.leave()
-                }, failure: { (_, _, error) in
-                    print(error)
-                    allImagesGroup.leave()
-                })
-            }
+            self.downloader.downloadImage(for: URLRequest(url: URL(string: item.url)!), success: { (_, _, image) in
+                item.image = image
+                allImagesGroup.leave()
+            }, failure: { (_, _, error) in
+                print(error)
+                allImagesGroup.leave()
+            })
         }
         allImagesGroup.notify(queue: DispatchQueue.main) { completion() }
     }
