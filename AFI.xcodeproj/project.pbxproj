@@ -7,9 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		2E7518171E434518002012A6 /* privkey.pem in Resources */ = {isa = PBXBuildFile; fileRef = 2E7518151E434518002012A6 /* privkey.pem */; };
-		2E7518181E434518002012A6 /* server.pem in Resources */ = {isa = PBXBuildFile; fileRef = 2E7518161E434518002012A6 /* server.pem */; };
-		2E75181A1E434737002012A6 /* server.crt in Resources */ = {isa = PBXBuildFile; fileRef = 2E7518191E434737002012A6 /* server.crt */; };
+		2E75181E1E434996002012A6 /* server.crt in Resources */ = {isa = PBXBuildFile; fileRef = 2E75181D1E434996002012A6 /* server.crt */; };
 		2E82F8171E433922005EE514 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F8161E433922005EE514 /* AppDelegate.swift */; };
 		2E82F8191E433922005EE514 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2E82F8181E433922005EE514 /* ViewController.swift */; };
 		2E82F81C1E433922005EE514 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 2E82F81A1E433922005EE514 /* Main.storyboard */; };
@@ -21,9 +19,7 @@
 /* Begin PBXFileReference section */
 		079F0AC089F30D826638E0F4 /* Pods-AFI.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-AFI.debug.xcconfig"; path = "Pods/Target Support Files/Pods-AFI/Pods-AFI.debug.xcconfig"; sourceTree = "<group>"; };
 		2E1512FB1E43395C004440D5 /* MyPlayground.playground */ = {isa = PBXFileReference; lastKnownFileType = file.playground; path = MyPlayground.playground; sourceTree = "<group>"; };
-		2E7518151E434518002012A6 /* privkey.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = privkey.pem; sourceTree = "<group>"; };
-		2E7518161E434518002012A6 /* server.pem */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = server.pem; sourceTree = "<group>"; };
-		2E7518191E434737002012A6 /* server.crt */ = {isa = PBXFileReference; lastKnownFileType = file; path = server.crt; sourceTree = "<group>"; };
+		2E75181D1E434996002012A6 /* server.crt */ = {isa = PBXFileReference; lastKnownFileType = file; path = server.crt; sourceTree = "<group>"; };
 		2E82F8131E433922005EE514 /* AFI.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = AFI.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		2E82F8161E433922005EE514 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		2E82F8181E433922005EE514 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -50,9 +46,7 @@
 		2E82F80A1E433922005EE514 = {
 			isa = PBXGroup;
 			children = (
-				2E7518191E434737002012A6 /* server.crt */,
-				2E7518151E434518002012A6 /* privkey.pem */,
-				2E7518161E434518002012A6 /* server.pem */,
+				2E75181D1E434996002012A6 /* server.crt */,
 				2E1512FB1E43395C004440D5 /* MyPlayground.playground */,
 				2E82F8151E433922005EE514 /* AFI */,
 				2E82F8141E433922005EE514 /* Products */,
@@ -162,11 +156,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2E75181E1E434996002012A6 /* server.crt in Resources */,
 				2E82F8211E433922005EE514 /* LaunchScreen.storyboard in Resources */,
-				2E75181A1E434737002012A6 /* server.crt in Resources */,
-				2E7518171E434518002012A6 /* privkey.pem in Resources */,
 				2E82F81E1E433922005EE514 /* Assets.xcassets in Resources */,
-				2E7518181E434518002012A6 /* server.pem in Resources */,
 				2E82F81C1E433922005EE514 /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
