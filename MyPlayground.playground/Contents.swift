@@ -16,8 +16,16 @@ class Card {
 //-----------------------------------------------------------
 class AllImagesDownloader {
     
+    static func dataForFile(_ file: String) -> Data {
+        return try! Data(contentsOf: URL(fileURLWithPath: Bundle.main.path(forResource: file, ofType: "")!))
+    }
+    
     private let sessionManager: AFHTTPSessionManager = {
         let m = AFHTTPSessionManager()
+        let s = AFSecurityPolicy(pinningMode: AFSSLPinningMode.publicKey)
+        s.allowInvalidCertificates = true
+        s.pinnedCertificates = Set([AllImagesDownloader.dataForFile("server.crt")])
+        m.securityPolicy = s
         m.responseSerializer = AFImageResponseSerializer()
         return m
     }()
@@ -25,7 +33,6 @@ class AllImagesDownloader {
     private lazy var downloader:AFImageDownloader = {
         return AFImageDownloader(sessionManager: self.sessionManager, downloadPrioritization: .FIFO, maximumActiveDownloads: 5, imageCache: nil)
     }()
-
     
     func fetchImages(_ items: [Card], completion: @escaping () -> Void) {
         let allImagesGroup = DispatchGroup()
@@ -36,9 +43,8 @@ class AllImagesDownloader {
                 self.downloader.downloadImage(for: URLRequest(url: URL(string: item.url)!), success: { (_, _, image) in
                     item.image = image
                     allImagesGroup.leave()
-                }, failure: { (req, res, error) in
-                    print(req); print(res as Any); print(error)
-                    
+                }, failure: { (_, _, error) in
+                     print(error)
                 })
             }
         }
@@ -48,12 +54,10 @@ class AllImagesDownloader {
     }
 }
 
-let cards = [Card(url: "http://localhost:8080/i1.png"),
-             Card(url: "http://localhost:8080/i2.png"),
-             Card(url: "http://localhost:8080/i3.png")]
+let cards = [Card(url: "https://localhost:4443/i1.png"),
+             Card(url: "https://localhost:4443/i1.png"),
+             Card(url: "https://localhost:4443/i1.png")]
 
-let start = Date()
 AllImagesDownloader().fetchImages(cards) {
     cards.forEach { print($0.image ?? "no image?") }
-    print("total time: \(round((Date().timeIntervalSince1970 - start.timeIntervalSince1970) * 100)/100.0)")
 }
