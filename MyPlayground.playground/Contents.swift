@@ -40,7 +40,7 @@ class AllImagesDownloader {
     func fetchImages(_ items: [Card], completion: @escaping () -> Void) {
         let allImagesGroup = DispatchGroup()
         
-        items.enumerated().forEach { _, item in
+        items.forEach { item in
             allImagesGroup.enter()
             DispatchQueue.global().async {
                 self.downloader.downloadImage(for: URLRequest(url: URL(string: item.url)!), success: { (_, _, image) in
